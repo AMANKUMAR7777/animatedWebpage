@@ -53,12 +53,18 @@ Shery.makeMagnet(".page1 h1, a", {
   duration: 1,
 });
 
+Shery.textAnimate(".page2 .h1-animate", {
+    style: 1,
+    y: 100,
+    delay: 0.05, // reduced delay for faster animation
+    duration: 0.5, // reduced duration for faster animation
+    ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+    multiplier: 2.2,
+})
 
 
 //lenis js
 
-
-// Initialize Lenis
 // Initialize Lenis
 const lenis = new Lenis({
     duration: 1.2,
@@ -73,3 +79,4 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
