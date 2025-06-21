@@ -47,3 +47,29 @@ Shery.mouseFollower({
   ease: "cubic-bezier(0.23, .5, 0.120, .1)",
   duration: .8,
 });
+
+Shery.makeMagnet(".page1 h1, a", {
+  ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+  duration: 1,
+});
+
+
+
+//lenis js
+
+
+// Initialize Lenis
+// Initialize Lenis
+const lenis = new Lenis({
+    duration: 1.2,
+    lerp: 1.5,
+    smoothWheel: true,
+    orientation: "vertical",
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
