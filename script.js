@@ -12,34 +12,6 @@ window.onload = function() {
 };
 
 
-//text hover effect
-var boxes = document.querySelectorAll(".box");
-var crsr = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", function(event) {
-    crsr.style.left = event.pageX + "px";
-    crsr.style.top = event.pageY + "px";
-});
-
-boxes.forEach(function(elem) {
-    elem.addEventListener("mouseenter", function() {
-        var att = elem.getAttribute("data-image");
-        crsr.style.width = "470px";
-        crsr.style.height = "370px";
-        crsr.style.borderRadius = "0";
-        crsr.style.backgroundImage = `url(${att})`;
-    });
-
-    elem.addEventListener("mouseleave", function() {
-        crsr.style.width = "0px";
-        crsr.style.height = "0px";
-        crsr.style.borderRadius = "50%";
-        crsr.style.backgroundImage = "none";
-    });
-});
-
-
-
 //shery js starts from here
 
 Shery.mouseFollower({
@@ -48,19 +20,24 @@ Shery.mouseFollower({
   duration: .8,
 });
 
-Shery.makeMagnet(".page1 h1, a", {
+Shery.makeMagnet("a, .page1 .card", {
   ease: "cubic-bezier(0.23, 1, 0.320, 1)",
   duration: 1,
 });
 
-Shery.textAnimate(".page2 .h1-animate", {
-    style: 1,
-    y: 100,
-    delay: 0.05, // reduced delay for faster animation
-    duration: 0.5, // reduced duration for faster animation
+Shery.makeMagnet(".page1 h1", {
     ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-    multiplier: 2.2,
+    duration: .6,
 })
+
+// Shery.textAnimate(".page2 .h1-animate", {
+//     style: 1,
+//     y: 100,
+//     delay: 0.05, // reduced delay for faster animation
+//     duration: 0.5, // reduced duration for faster animation
+//     ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+//     multiplier: 2.2,
+// })
 
 
 //lenis js
@@ -80,3 +57,29 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+
+
+//GSAP
+
+gsap.registerPlugin(ScrollTrigger)
+const splitTypes = document.querySelectorAll('.reveal-type');
+
+splitTypes.forEach((char) => {
+
+  const text = new SplitType(char, { types: 'chars, words' });
+
+  gsap.from(text.chars, {
+    scrollTrigger: {
+      trigger: char,
+      start: "top 90%",
+      end: "top 0%",
+      scrub: true,
+      markers: false,
+    },
+    x: 20,
+    y: 10,
+    opacity: 0.1,
+    stagger: 0.03,
+    ease: "power2.out", 
+  })
+});
