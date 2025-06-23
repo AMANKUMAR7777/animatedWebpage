@@ -170,3 +170,45 @@ section{
   pointer-events: none;
   z-index: 1;
 }
+
+.page4{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'syne', sans-serif;
+  align-items: center;
+}
+
+.page4 h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 10vh;
+}
+.page4 .steps{
+  display: flex;
+  gap: 2vw;
+}
+.page4 .step{
+  /* border: 2px solid #fff; */
+  background: linear-gradient(to top, #2C0075, #070210);
+  height: 400px;
+  width: 350px;
+  padding: 1.4vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  border-radius: 16px;
+}
+.page4 .step h2{
+  font-size: 3.5rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+}
+.page4 .step p{
+  font-size: 2rem;
+  padding: 20% 0;
+  text-align: center;
+}

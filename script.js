@@ -189,3 +189,86 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+//PAGE 4 Animation
+document.addEventListener("DOMContentLoaded", function () {
+  const page4 = document.querySelector('.page4');
+  const steps = document.querySelectorAll('.page4 .step');
+  const page4Title = document.querySelector('.page4 h1');
+
+  if (page4 && steps.length && page4Title) {
+    gsap.from(page4Title, {
+      scrollTrigger: {
+        trigger: page4,
+        start: "top 80%",
+        end: "top 60%",
+        scrub: 1,
+      },
+      opacity: 0,
+      y: 80,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+
+  gsap.from(steps, {
+      scrollTrigger: {
+        trigger: page4,
+        start: "top 85%",
+        end: "bottom 60%",
+        scrub: 1,
+      },
+      opacity: 0,
+      y: 120,
+      scale: 0.85,
+      stagger: 0.18,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+
+   
+    let setY = [];
+    steps.forEach((step, i) => {
+      setY[i] = gsap.quickSetter(step, "y", "px");
+    });
+
+    ScrollTrigger.create({
+      trigger: page4,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+      onUpdate: self => {
+        const progress = self.progress;
+        steps.forEach((step, i) => {
+        
+          setY[i]((progress - 0.5) * 100 * (i - 1));
+        });
+      }
+    });
+
+    page4Title.addEventListener('click', () => {
+      lenis.scrollTo(page4, { offset: -50, duration: 1, easing: t => 1 - Math.pow(1 - t, 3) });
+    });
+  }
+});
+
+gsap.registerPlugin(ScrollTrigger);
+const page4Title = document.querySelector('.page4 h1');
+
+if (page4Title) {
+  const splitTitle = new SplitType(page4Title, { types: 'chars, words' });
+
+  gsap.from(splitTitle.chars, {
+    scrollTrigger: {
+      trigger: page4Title,
+      start: "top 90%",
+      end: "top 0%",
+      scrub: true,
+      markers: false,
+    },
+    x: 40,
+    y: 10,
+    opacity: 0.1,
+    stagger: 0.03,
+    ease: "power2.out",
+  });
+}
